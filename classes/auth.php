@@ -1,19 +1,22 @@
 <?php
 
+require_once __DIR__ . "/../includes/config.php";
 require_once __DIR__ . "/usuario.php";
 
 class Auth
 {
-    private Usuario $usuario;
+    private ?Usuario $usuario = null;
 
-    public function __construct()
+    // O Usuario (e a conexão com o banco) só é criado quando realmente precisa,
+    // assim verificar se há sessão ativa não depende do banco estar no ar.
+    private function usuarios(): Usuario
     {
-        $this->usuario = new Usuario();
+        return $this->usuario ??= new Usuario();
     }
 
     public function login(string $email, string $senha): bool
     {
-        $usuario = $this->usuario->validarLogin($email, $senha);
+        $usuario = $this->usuarios()->validarLogin($email, $senha);
 
         if (!$usuario) {
             return false;
@@ -58,7 +61,7 @@ class Auth
     public function requireLogin(): void
     {
         if (!$this->check()) {
-            header("Location: login.php");
+            header("Location: " . url("login.php"));
             exit;
         }
     }

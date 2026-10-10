@@ -23,7 +23,8 @@ class Database
                 self::$instance->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
                 self::$instance->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
             } catch (PDOException $e) {
-                throw new RuntimeException("Erro na conexão: " . $e->getMessage());
+                error_log("[Database] " . $e->getMessage());
+                throw new RuntimeException("Não foi possível conectar ao banco de dados.");
             }
         }
 

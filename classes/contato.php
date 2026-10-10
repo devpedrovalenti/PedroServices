@@ -27,4 +27,11 @@ class Contato extends Model
         $sql = $this->db->prepare("UPDATE contatos SET lido = 1 WHERE id = ?");
         return $sql->execute([$id]);
     }
+
+    public function countNaoLidos(): int
+    {
+        return (int)$this->db
+            ->query("SELECT COUNT(*) FROM contatos WHERE lido = 0")
+            ->fetchColumn();
+    }
 }

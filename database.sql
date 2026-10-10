@@ -13,7 +13,7 @@ USE landing;
 -- TABELA DE CLIENTES
 -- ============================================
 
-CREATE TABLE clientes (
+CREATE TABLE IF NOT EXISTS clientes (
 
     id INT AUTO_INCREMENT PRIMARY KEY,
 
@@ -33,7 +33,7 @@ CREATE TABLE clientes (
 -- TABELA DE CONVERSAS COM A IA
 -- ============================================
 
-CREATE TABLE conversas (
+CREATE TABLE IF NOT EXISTS conversas (
 
     id INT AUTO_INCREMENT PRIMARY KEY,
 
@@ -72,7 +72,7 @@ CREATE TABLE conversas (
 -- TABELA DE PROJETOS
 -- ============================================
 
-CREATE TABLE projetos (
+CREATE TABLE IF NOT EXISTS projetos (
 
     id INT AUTO_INCREMENT PRIMARY KEY,
 
@@ -112,37 +112,29 @@ CREATE TABLE projetos (
 -- ADMINISTRADORES
 -- ============================================
 
-CREATE TABLE usuarios (
+CREATE TABLE IF NOT EXISTS usuarios (
 
     id INT AUTO_INCREMENT PRIMARY KEY,
 
     nome VARCHAR(120),
 
-    email VARCHAR(150),
+    email VARCHAR(150) NOT NULL UNIQUE,
 
-    senha VARCHAR(255),
+    senha VARCHAR(255) NOT NULL,
 
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 
 );
 
--- Usuário padrão
--- senha: admin123
-
-INSERT INTO usuarios
-(nome,email,senha)
-VALUES
-(
-'Administrador',
-'admin@localhost',
-'$2y$10$Z6jA0J2M6l4B5x9j3tIu5u3vT8K6k5X4F8hY3c9Kz2QxQnN7hV2fS'
-);
+-- O administrador NÃO é mais criado com senha padrão.
+-- Depois de importar este arquivo, rode no terminal:
+--   php scripts/criar-admin.php
 
 -- ============================================
 -- PORTFÓLIO
 -- ============================================
 
-CREATE TABLE portfolio (
+CREATE TABLE IF NOT EXISTS portfolio (
 
     id INT AUTO_INCREMENT PRIMARY KEY,
 
@@ -166,7 +158,7 @@ CREATE TABLE portfolio (
 -- DEPOIMENTOS
 -- ============================================
 
-CREATE TABLE depoimentos (
+CREATE TABLE IF NOT EXISTS depoimentos (
 
     id INT AUTO_INCREMENT PRIMARY KEY,
 
@@ -188,7 +180,7 @@ CREATE TABLE depoimentos (
 -- MENSAGENS DO FORMULÁRIO
 -- ============================================
 
-CREATE TABLE contatos (
+CREATE TABLE IF NOT EXISTS contatos (
 
     id INT AUTO_INCREMENT PRIMARY KEY,
 
@@ -212,7 +204,7 @@ CREATE TABLE contatos (
 -- CONFIGURAÇÕES
 -- ============================================
 
-CREATE TABLE configuracoes (
+CREATE TABLE IF NOT EXISTS configuracoes (
 
     id INT AUTO_INCREMENT PRIMARY KEY,
 

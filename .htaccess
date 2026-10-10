@@ -1,0 +1,28 @@
+Options -Indexes
+
+# Bloqueia arquivos sensíveis (.env, .sql, logs, etc.)
+<FilesMatch "^(\.|.*\.(sql|env|log|md|rar|zip|bak|ini))">
+    Require all denied
+</FilesMatch>
+
+# Cabeçalhos de segurança básicos
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+</IfModule>
+
+# Cache longo para imagens, CSS e JS (os links já têm ?v= para renovar)
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+</IfModule>
+
+# Compressão
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/css application/javascript image/svg+xml
+</IfModule>

@@ -1,0 +1,115 @@
+/* public/assets/styles/home.css */
+:root {
+    --bg-color: #f4f7f6;
+    --panel-bg: #ffffff;
+    --primary-color: #2c3e50;
+    --accent-color: #3498db;
+    --text-color: #333333;
+    --border-radius: 8px;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.agendamento-panel {
+    background-color: var(--panel-bg);
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.agendamento-panel h2 {
+    margin-top: 0;
+    color: var(--primary-color);
+}
+
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="date"],
+.form-group select {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: var(--border-radius);
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: var(--accent-color);
+}
+
+/* Grid de Horários no formato de "Botões" */
+.horarios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.slot-horario {
+    padding: 10px;
+    background-color: #e9ecef;
+    border: 2px solid transparent;
+    border-radius: var(--border-radius);
+    text-align: center;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.2s ease;
+}
+
+.slot-horario:hover {
+    background-color: #d1d8e0;
+}
+
+.slot-horario.selecionado {
+    background-color: var(--accent-color);
+    color: white;
+    border-color: #2980b9;
+}
+
+.placeholder-msg {
+    color: #7f8c8d;
+    font-style: italic;
+    font-size: 14px;
+}
+
+.btn-submit {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 15px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+.btn-submit:hover {
+    background-color: #2980b9;
+}
